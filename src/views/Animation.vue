@@ -57,22 +57,21 @@ export default {
     //
   },
   mounted() {
-    const images = document.querySelectorAll('.image')
-    images.forEach((target) => this.onScroll(target))
-
-    const subTitles = document.querySelectorAll('.sub-title')
     // rootからbottom:-150pxの位置で発火
     const options = {
       root: null,
       rootMargin: "0px 0px -150px",
       threshold: 0
     }
+
+    const images = document.querySelectorAll('.image')
+    images.forEach((target) => this.onScroll(target, options))
+
+    const subTitles = document.querySelectorAll('.sub-title')
     subTitles.forEach((target) => this.onScroll(target, options))
   },
   methods: {
     onScroll(target, options = {}) {
-      console.log('options', options)
-
       const observer = new IntersectionObserver((entries) => {
         for(const e of entries) {
           if (e.isIntersecting) {
@@ -122,6 +121,7 @@ export default {
     > p {
       background-color: #f9f9f9;
       padding: 16px;
+      text-align: left;
     }
   }
 
