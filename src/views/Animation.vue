@@ -61,20 +61,27 @@ export default {
     images.forEach((target) => this.onScroll(target))
 
     const subTitles = document.querySelectorAll('.sub-title')
-    subTitles.forEach((target) => this.onScroll(target))
+    // rootからbottom:-150pxの位置で発火
+    const options = {
+      root: null,
+      rootMargin: "0px 0px -150px",
+      threshold: 0
+    }
+    subTitles.forEach((target) => this.onScroll(target, options))
   },
   methods: {
-    onScroll(target) {
+    onScroll(target, options = {}) {
+      console.log('options', options)
+
       const observer = new IntersectionObserver((entries) => {
         for(const e of entries) {
-          console.log('entries', e)
           if (e.isIntersecting) {
             e.target.classList.add("show")
           } else {
             e.target.classList.remove("show")
           }
         }
-      })
+      }, options)
 
       // 監視したい要素をobserveする。
       observer.observe(target);
