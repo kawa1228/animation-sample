@@ -76,8 +76,6 @@ export default {
         for(const e of entries) {
           if (e.isIntersecting) {
             e.target.classList.add("show")
-          } else {
-            e.target.classList.remove("show")
           }
         }
       }, options)
@@ -127,6 +125,7 @@ export default {
 
   img {
     width: 100%;
+    height: 90vh;
     margin-bottom: 30px;
   }
 
