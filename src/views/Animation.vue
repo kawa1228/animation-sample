@@ -1,8 +1,6 @@
 <template>
   <div class="animation">
-    <div class="animation__content">
-      <h1 ref="title">Animation</h1>
-    </div>
+    <h1 class="title">Animation</h1>
     <main class="contents">
       <div class="box">
         <img class="image" src="../assets/image01.jpeg" alt="dolphin">
@@ -49,7 +47,7 @@
 
 <script>
 // @ is an alias to /src
-import {TweenMax} from "gsap";
+// import {TweenMax} from "gsap";
 
 export default {
   name: 'animation',
@@ -65,23 +63,23 @@ export default {
     }
 
     const images = document.querySelectorAll('.image')
-    images.forEach((target) => this.onScroll(target, options))
+    images.forEach((target) => this.onIntersect(target, options))
 
     const subTitles = document.querySelectorAll('.sub-title')
-    subTitles.forEach((target) => this.onScroll(target, options))
+    subTitles.forEach((target) => this.onIntersect(target, options))
   },
   methods: {
-    onScroll(target, options = {}) {
-      const observer = new IntersectionObserver((entries) => {
-        for(const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add("show")
-          }
-        }
-      }, options)
-
+    onIntersect(target, options = {}) {
+      const observer = new IntersectionObserver(this.addShowClass, options)
       // 監視したい要素をobserveする。
-      observer.observe(target);
+      observer.observe(target)
+    },
+    addShowClass(entries) {
+      for(const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add("show")
+        }
+      }
     }
   }
 }
@@ -107,7 +105,7 @@ export default {
 
     .sub-title {
       opacity: 0;
-      transform: translateX(-10%);
+      transform: translateX(-40px);
       transition: opacity 1.4s, transform 0.8s;
 
       &.show {
