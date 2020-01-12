@@ -17,6 +17,7 @@
     "@vue/cli-service": "^4.1.0",
     "gsap": "^3.0.5",
     "node-sass": "^4.13.0",
+    "ress": "^2.0.3",
     "sass-loader": "^8.0.1",
     "vue-template-compiler": "^2.6.10"
   }

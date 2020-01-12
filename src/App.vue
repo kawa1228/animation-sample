@@ -9,6 +9,13 @@
   </div>
 </template>
 
+<script>
+import 'ress';
+export default {
+  //
+}
+</script>
+
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
