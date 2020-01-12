@@ -1,5 +1,7 @@
 # animation-sample
 
+## Animation Component
+![ezgif com-video-to-gif 19 57 59](https://user-images.githubusercontent.com/36784748/72218239-33d47580-357c-11ea-87a7-1f72cd7bbdf0.gif)
 ## Project setup
 ```
 yarn install
