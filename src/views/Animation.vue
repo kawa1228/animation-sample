@@ -5,8 +5,8 @@
     </div>
     <main class="contents">
       <div class="box">
-        <img src="../assets/image01.jpeg" alt="dolphin">
-        <h2 ref="sub-title">What is Lorem Ipsum?</h2>
+        <img class="image" src="../assets/image01.jpeg" alt="dolphin">
+        <h2 class="sub-title">What is Lorem Ipsum?</h2>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -17,8 +17,8 @@
         </p>
       </div>
       <div class="box">
-        <img src="../assets/image02.jpeg" alt="stingray">
-        <h2 ref="sub-title">Why do we use it?</h2>
+        <img class="image" src="../assets/image02.jpeg" alt="stingray">
+        <h2 class="sub-title">Why do we use it?</h2>
         <p>
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
           The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
@@ -29,8 +29,8 @@
         </p>
       </div>
       <div class="box">
-        <img src="../assets/image03.jpeg" alt="penguin">
-        <h2 ref="sub-title">Where can I get some?</h2>
+        <img class="image" src="../assets/image03.jpeg" alt="penguin">
+        <h2 class="sub-title">Where can I get some?</h2>
         <p>
           There are many variations of passages of Lorem Ipsum available,
           but the majority have suffered alteration in some form, by injected humour,
@@ -57,16 +57,27 @@ export default {
     //
   },
   mounted() {
-    const title = this.$refs.title
-    console.log('title', title)
-    TweenMax.fromTo(title, 3,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-      }
-    );
+    const targets = document.querySelectorAll('.image')
+    console.log('title', targets)
+
+    targets.forEach((target) => this.onScroll(target))
+  },
+  methods: {
+    onScroll(target) {
+      const observer = new IntersectionObserver((entries) => {
+        for(const e of entries) {
+          console.log('entries', e)
+          if (e.isIntersecting) {
+            e.target.classList.add("show")
+          } else {
+            e.target.classList.remove("show")
+          }
+        }
+      })
+
+      // 監視したい要素をobserveする。
+      observer.observe(target);
+    }
   }
 }
 </script>
@@ -77,6 +88,22 @@ export default {
 
   .box {
     margin: 30px 0 60px 0;
+
+    .image {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.4s, transform 0.8s;
+    }
+
+    .image.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    > p {
+      background-color: #f9f9f9;
+      padding: 16px;
+    }
   }
 
   img {
