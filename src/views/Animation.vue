@@ -58,11 +58,10 @@ export default {
   },
   mounted() {
     const images = document.querySelectorAll('.image')
-    console.log('images', images)
-
     images.forEach((target) => this.onScroll(target))
 
-
+    const subTitles = document.querySelectorAll('.sub-title')
+    subTitles.forEach((target) => this.onScroll(target))
   },
   methods: {
     onScroll(target) {
@@ -99,6 +98,17 @@ export default {
       &.show {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    .sub-title {
+      opacity: 0;
+      transform: translateX(-10%);
+      transition: opacity 1.4s, transform 0.8s;
+
+      &.show {
+        opacity: 1;
+        transform: translateX(0);
       }
     }
 
