@@ -57,10 +57,12 @@ export default {
     //
   },
   mounted() {
-    const targets = document.querySelectorAll('.image')
-    console.log('title', targets)
+    const images = document.querySelectorAll('.image')
+    console.log('images', images)
 
-    targets.forEach((target) => this.onScroll(target))
+    images.forEach((target) => this.onScroll(target))
+
+
   },
   methods: {
     onScroll(target) {
