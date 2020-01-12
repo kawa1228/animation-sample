@@ -93,11 +93,11 @@ export default {
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1.4s, transform 0.8s;
-    }
 
-    .image.show {
-      opacity: 1;
-      transform: translateY(0);
+      &.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     > p {
